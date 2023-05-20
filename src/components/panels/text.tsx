@@ -1,6 +1,6 @@
+import useStore from '@/config/store'
 import { Node } from 'reactflow'
 import { shallow } from 'zustand/shallow'
-import useStore from '../../src/config/store'
 
 const selector = (state: {
 	selectedNode: Node | null

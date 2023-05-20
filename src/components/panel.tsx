@@ -1,8 +1,7 @@
 import { Node } from 'reactflow'
 import { shallow } from 'zustand/shallow'
 import useStore from '../config/store'
-import { AddNodePanel } from './add-node-panel'
-import { TextPanel } from './text-panel'
+import { TextPanel, AddNodePanel } from './panels'
 
 const selector = (state: { selectedNode: Node | null; nodes: Node[] }) => ({
 	selectedNode: state.selectedNode,

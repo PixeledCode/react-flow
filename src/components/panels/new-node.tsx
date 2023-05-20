@@ -1,6 +1,6 @@
 import React from 'react'
-import { NodeTypes } from '../config/store'
 import { IconMessages } from '@tabler/icons-react'
+import { NodeTypes } from '@/config/store'
 
 export const AddNodePanel = () => {
 	const onDragStart = (

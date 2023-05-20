@@ -1,7 +1,7 @@
+import { NodeData } from '@/config/store'
 import { memo } from 'react'
 import { Handle, Position } from 'reactflow'
 import { twMerge } from 'tailwind-merge'
-import { NodeData } from '../../src/config/store'
 
 export const TextNode = memo(
 	({ selected, data }: { selected: boolean; data: NodeData }) => {
