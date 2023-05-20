@@ -13,5 +13,7 @@ module.exports = {
 		'no-undef': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',
 		'@typescript-eslint/no-explicit-any': 'off',
+		'no-mixed-spaces-and-tabs': 'off',
+		'@typescript-eslint/no-empty-interface': 'off',
 	},
 }

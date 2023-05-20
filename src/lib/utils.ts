@@ -1,3 +1,10 @@
+import { ClassValue, clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
+export function cn(...inputs: ClassValue[]) {
+	return twMerge(clsx(inputs))
+}
+
 let id = 0
 const getId = () => `newNode${id++}`
 

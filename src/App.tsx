@@ -63,7 +63,10 @@ export default function App() {
 		<ReactFlowProvider>
 			<Header nodes={nodes} />
 			<main className="flex">
-				<div className="h-screen flex-grow" ref={reactFlowWrapper}>
+				<div
+					className="h-[calc(100vh_-_48px)] flex-grow"
+					ref={reactFlowWrapper}
+				>
 					<ReactFlow
 						nodes={nodes}
 						edges={edges}

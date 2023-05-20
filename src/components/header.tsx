@@ -1,9 +1,22 @@
 import { Node } from 'reactflow'
+import { useToast } from './ui/toast/use-toast'
 
 export function Header({ nodes }: { nodes: Node[] }) {
+	const { toast } = useToast()
+
 	function isValidSave() {
 		const notConnectedNodes = nodes.filter((node) => !node.data.targetSelected)
-		return notConnectedNodes.length < 2
+		const isValid = notConnectedNodes.length < 2
+		if (isValid) {
+			toast({
+				description: 'Saved successfully.',
+			})
+		} else {
+			toast({
+				description: 'Please connect all nodes.',
+				variant: 'destructive',
+			})
+		}
 	}
 
 	return (
