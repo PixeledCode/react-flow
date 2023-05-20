@@ -19,10 +19,13 @@ export type NodeData = {
 	isSelected: boolean
 }
 
+export type NodeTypes = 'textNode'
+
 type RFState = {
 	nodes: Node[]
 	edges: Edge[]
 	selectedNode: Node | null
+	setNodes: (node: Node) => void
 	onNodesChange: OnNodesChange
 	onEdgesChange: OnEdgesChange
 	onConnect: OnConnect
@@ -38,6 +41,11 @@ const useStore = create<RFState>((set, get) => ({
 	setSelectedNode: (node: Node) => {
 		set({
 			selectedNode: node,
+		})
+	},
+	setNodes: (node: Node) => {
+		set({
+			nodes: [...get().nodes, node],
 		})
 	},
 	onNodesChange: (changes: NodeChange[]) => {

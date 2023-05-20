@@ -1,26 +1,31 @@
-// import { Node } from 'reactflow'
-// import { shallow } from 'zustand/shallow'
-// import useStore from '../../src/config/store'
-
-// const selector = (state: {
-// 	selectedNode: Node | null
-// 	updateNodeLabel: (nodeId: string, nodeVal: string) => void
-// }) => ({
-// 	selectedNode: state.selectedNode,
-// 	updateNodeLabel: state.updateNodeLabel,
-// })
+import React from 'react'
+import { NodeTypes } from '../config/store'
 
 export const AddNodePanel = () => {
-	// const { selectedNode, updateNodeLabel } = useStore(selector, shallow)
+	const onDragStart = (
+		event: React.DragEvent<HTMLDivElement>,
+		nodeType: NodeTypes
+	) => {
+		event.dataTransfer.setData('application/reactflow', nodeType)
+		event.dataTransfer.effectAllowed = 'move'
+	}
 
 	return (
-		<>
+		<aside>
 			<div className="p-2 font-semibold">
 				<h2>Add New Node</h2>
 			</div>
 			<hr />
 
-			<div className="p-2 mt-3"></div>
-		</>
+			<div className="p-2 mt-3">
+				<div
+					className="border border-blue-400 py-2 px-3 rounded-md cursor-pointer"
+					onDragStart={(event) => onDragStart(event, 'textNode')}
+					draggable
+				>
+					Default Node
+				</div>
+			</div>
+		</aside>
 	)
 }

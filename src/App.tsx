@@ -19,6 +19,7 @@ const selector = (state: {
 	onEdgesChange: any
 	onConnect: any
 	setSelectedNode: any
+	setNodes: (node: Node) => void
 }) => ({
 	nodes: state.nodes,
 	edges: state.edges,
@@ -26,9 +27,16 @@ const selector = (state: {
 	onEdgesChange: state.onEdgesChange,
 	onConnect: state.onConnect,
 	setSelectedNode: state.setSelectedNode,
+	setNodes: state.setNodes,
 })
 
+let id = 0
+const getId = () => `newNode${id++}`
+
 export default function App() {
+	const reactFlowWrapper = React.useRef<any>(null)
+	const [reactFlowInstance, setReactFlowInstance] = React.useState<any>(null)
+
 	const {
 		nodes,
 		edges,
@@ -36,12 +44,50 @@ export default function App() {
 		onEdgesChange,
 		onConnect,
 		setSelectedNode,
+		setNodes,
 	} = useStore(selector, shallow)
+
+	const onDragOver = React.useCallback(
+		(event: React.DragEvent<HTMLDivElement>) => {
+			event.preventDefault()
+			event.dataTransfer.dropEffect = 'move'
+		},
+		[]
+	)
+
+	const onDrop = React.useCallback(
+		(event: any) => {
+			event.preventDefault()
+			if (reactFlowWrapper) {
+				const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect()
+				const type = event.dataTransfer.getData('application/reactflow')
+
+				// check if the dropped element is valid
+				if (typeof type === 'undefined' || !type) {
+					return
+				}
+
+				const position = reactFlowInstance.project({
+					x: event.clientX - reactFlowBounds.left,
+					y: event.clientY - reactFlowBounds.top,
+				})
+				const newNode = {
+					id: getId(),
+					type,
+					position,
+					data: { label: `${type} node` },
+				}
+
+				setNodes(newNode)
+			}
+		},
+		[reactFlowInstance, setNodes]
+	)
 
 	return (
 		<ReactFlowProvider>
 			<main className="flex">
-				<div className="h-screen flex-grow">
+				<div className="h-screen flex-grow" ref={reactFlowWrapper}>
 					<ReactFlow
 						nodes={nodes}
 						edges={edges}
@@ -54,6 +100,9 @@ export default function App() {
 						onPaneClick={() => {
 							setSelectedNode(null)
 						}}
+						onDragOver={onDragOver}
+						onDrop={onDrop}
+						onInit={setReactFlowInstance}
 						fitView
 						snapToGrid={true}
 						nodeTypes={nodesConfig.nodeTypes}
