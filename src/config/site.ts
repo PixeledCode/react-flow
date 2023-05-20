@@ -9,7 +9,6 @@ export const nodesConfig = {
 			type: 'textNode',
 			data: {
 				label: 'test message 1',
-				isSelected: false,
 			},
 			position: { x: 0, y: 0 },
 			sourcePosition: Position.Right,
@@ -19,7 +18,6 @@ export const nodesConfig = {
 			type: 'textNode',
 			data: {
 				label: 'test message 2',
-				isSelected: false,
 			},
 			position: { x: 300, y: 0 },
 			targetPosition: Position.Left,

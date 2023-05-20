@@ -18,7 +18,7 @@ export const TextPanel = () => {
 	}
 
 	return (
-		<div className="min-w-[200px] bg-white h-full border-gray-200 border">
+		<>
 			<div className="p-2 font-semibold">
 				<h2>Message</h2>
 			</div>
@@ -43,6 +43,6 @@ export const TextPanel = () => {
 					/>
 				</div>
 			</div>
-		</div>
+		</>
 	)
 }

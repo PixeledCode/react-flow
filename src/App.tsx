@@ -4,6 +4,7 @@ import ReactFlow, {
 	BackgroundVariant,
 	Controls,
 	Node,
+	ReactFlowProvider,
 } from 'reactflow'
 import 'reactflow/dist/style.css'
 import { shallow } from 'zustand/shallow'
@@ -38,29 +39,34 @@ export default function App() {
 	} = useStore(selector, shallow)
 
 	return (
-		<main className="flex">
-			<div className="h-screen flex-grow">
-				<ReactFlow
-					nodes={nodes}
-					edges={edges}
-					onNodesChange={onNodesChange}
-					onEdgesChange={onEdgesChange}
-					onNodeClick={(event: React.MouseEvent, node: Node) => {
-						setSelectedNode(node)
-					}}
-					onConnect={onConnect}
-					fitView
-					snapToGrid={true}
-					nodeTypes={nodesConfig.nodeTypes}
-				>
-					<Controls />
+		<ReactFlowProvider>
+			<main className="flex">
+				<div className="h-screen flex-grow">
+					<ReactFlow
+						nodes={nodes}
+						edges={edges}
+						onNodesChange={onNodesChange}
+						onEdgesChange={onEdgesChange}
+						onNodeClick={(event: React.MouseEvent, node: Node) => {
+							setSelectedNode(node)
+						}}
+						onConnect={onConnect}
+						onPaneClick={() => {
+							setSelectedNode(null)
+						}}
+						fitView
+						snapToGrid={true}
+						nodeTypes={nodesConfig.nodeTypes}
+					>
+						<Controls />
 
-					<Background variant={BackgroundVariant.Dots} gap={12} size={1} />
-				</ReactFlow>
-			</div>
-			<div className="basis-[400px]">
-				<Panel />
-			</div>
-		</main>
+						<Background variant={BackgroundVariant.Dots} gap={12} size={1} />
+					</ReactFlow>
+				</div>
+				<div className="basis-[400px]">
+					<Panel />
+				</div>
+			</main>
+		</ReactFlowProvider>
 	)
 }

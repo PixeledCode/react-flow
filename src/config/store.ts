@@ -39,17 +39,6 @@ const useStore = create<RFState>((set, get) => ({
 		set({
 			selectedNode: node,
 		})
-		// change node selected state to true
-		set({
-			nodes: get().nodes.map((n) => {
-				if (n.id === node.id) {
-					n.data.isSelected = true
-				} else {
-					n.data.isSelected = false
-				}
-				return n
-			}),
-		})
 	},
 	onNodesChange: (changes: NodeChange[]) => {
 		set({
