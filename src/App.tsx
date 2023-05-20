@@ -11,6 +11,7 @@ import { shallow } from 'zustand/shallow'
 import { Panel } from './components'
 import { nodesConfig } from './config/site'
 import useStore from './config/store'
+import { handleDragOver, handleOnDrop } from './lib/utils'
 
 const selector = (state: {
 	nodes: any
@@ -30,9 +31,6 @@ const selector = (state: {
 	setNodes: state.setNodes,
 })
 
-let id = 0
-const getId = () => `newNode${id++}`
-
 export default function App() {
 	const reactFlowWrapper = React.useRef<any>(null)
 	const [reactFlowInstance, setReactFlowInstance] = React.useState<any>(null)
@@ -49,37 +47,14 @@ export default function App() {
 
 	const onDragOver = React.useCallback(
 		(event: React.DragEvent<HTMLDivElement>) => {
-			event.preventDefault()
-			event.dataTransfer.dropEffect = 'move'
+			handleDragOver(event)
 		},
 		[]
 	)
 
 	const onDrop = React.useCallback(
 		(event: any) => {
-			event.preventDefault()
-			if (reactFlowWrapper) {
-				const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect()
-				const type = event.dataTransfer.getData('application/reactflow')
-
-				// check if the dropped element is valid
-				if (typeof type === 'undefined' || !type) {
-					return
-				}
-
-				const position = reactFlowInstance.project({
-					x: event.clientX - reactFlowBounds.left,
-					y: event.clientY - reactFlowBounds.top,
-				})
-				const newNode = {
-					id: getId(),
-					type,
-					position,
-					data: { label: `${type} node` },
-				}
-
-				setNodes(newNode)
-			}
+			handleOnDrop(event, reactFlowWrapper, reactFlowInstance, setNodes)
 		},
 		[reactFlowInstance, setNodes]
 	)
@@ -103,12 +78,10 @@ export default function App() {
 						onDragOver={onDragOver}
 						onDrop={onDrop}
 						onInit={setReactFlowInstance}
-						fitView
 						snapToGrid={true}
 						nodeTypes={nodesConfig.nodeTypes}
 					>
 						<Controls />
-
 						<Background variant={BackgroundVariant.Dots} gap={12} size={1} />
 					</ReactFlow>
 				</div>

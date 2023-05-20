@@ -10,7 +10,7 @@ export const nodesConfig = {
 			data: {
 				label: 'test message 1',
 			},
-			position: { x: 0, y: 0 },
+			position: { x: 300, y: 400 },
 			sourcePosition: Position.Right,
 		},
 		{
@@ -19,7 +19,7 @@ export const nodesConfig = {
 			data: {
 				label: 'test message 2',
 			},
-			position: { x: 300, y: 0 },
+			position: { x: 600, y: 300 },
 			targetPosition: Position.Left,
 		},
 	] as Node[],
