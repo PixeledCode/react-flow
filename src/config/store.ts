@@ -61,6 +61,17 @@ const useStore = create<RFState>((set, get) => ({
 	onConnect: (connection: Connection) => {
 		set({
 			edges: addEdge(connection, get().edges),
+			// set the targetSelected to true for the node that is the target of the connection
+			nodes: get().nodes.map((node) => {
+				if (node.id === connection.target) {
+					node.data = {
+						...node.data,
+						targetSelected: true,
+					}
+				}
+
+				return node
+			}),
 		})
 	},
 

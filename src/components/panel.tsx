@@ -6,12 +6,10 @@ import { TextPanel } from './text-panel'
 
 const selector = (state: { selectedNode: Node | null; nodes: Node[] }) => ({
 	selectedNode: state.selectedNode,
-	nodes: state.nodes,
 })
 
 export const Panel = () => {
 	const { selectedNode } = useStore(selector, shallow)
-
 	const CurrentPanel = getPanel(selectedNode?.type || '')
 
 	return (

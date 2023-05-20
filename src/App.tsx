@@ -8,7 +8,7 @@ import ReactFlow, {
 } from 'reactflow'
 import 'reactflow/dist/style.css'
 import { shallow } from 'zustand/shallow'
-import { Panel } from './components'
+import { Header, Panel } from './components'
 import { nodesConfig } from './config/site'
 import useStore from './config/store'
 import { handleDragOver, handleOnDrop } from './lib/utils'
@@ -61,12 +61,7 @@ export default function App() {
 
 	return (
 		<ReactFlowProvider>
-			<header className="py-1 px-4 shadow-sm flex justify-between">
-				<h1 className="text-4xl font-bold text-center">Chatbot Flow</h1>
-				<button className="py-1 px-4 border border-blue-400 rounded-md text-sm font-semibold hover:border-blue-600 active:bg-slate-100">
-					Save Changes
-				</button>
-			</header>
+			<Header nodes={nodes} />
 			<main className="flex">
 				<div className="h-screen flex-grow" ref={reactFlowWrapper}>
 					<ReactFlow

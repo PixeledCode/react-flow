@@ -10,6 +10,7 @@ export const nodesConfig = {
 			data: {
 				label: 'test message 1',
 				isInitial: true,
+				targetSelected: false,
 			},
 			position: { x: 300, y: 400 },
 			sourcePosition: Position.Right,
@@ -19,6 +20,7 @@ export const nodesConfig = {
 			type: 'textNode',
 			data: {
 				label: 'test message 2',
+				targetSelected: true,
 			},
 			position: { x: 600, y: 300 },
 			targetPosition: Position.Left,
