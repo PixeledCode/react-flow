@@ -12,7 +12,7 @@ export const TextNode = memo(
 					selected && 'border-blue-500'
 				)}
 			>
-				<span className="py-1 px-3 text-xs font-semibold bg-green-200 block rounded-t-md">
+				<span className="py-1 px-3 text-xs font-semibold bg-primary text-primary-foreground hover:bg-primary/90 block rounded-t-md">
 					Send Message
 				</span>
 				<div className="py-2 px-3 min-h-[32px]">

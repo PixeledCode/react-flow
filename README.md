@@ -13,7 +13,7 @@ To get started with this application, you will need to follow these steps:
 
 ## Usage
 
-The application allows users to create flow diagrams.
+The application allows users to create flow diagrams. The user can create multiple nodes and connect them with edges. Each node can be customized with a label.
 
 ## Features
 

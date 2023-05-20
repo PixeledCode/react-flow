@@ -1,5 +1,6 @@
 import { Node } from 'reactflow'
 import { useToast } from './ui/toast/use-toast'
+import { Button } from './ui/button/button'
 
 export function Header({ nodes }: { nodes: Node[] }) {
 	const { toast } = useToast()
@@ -22,12 +23,7 @@ export function Header({ nodes }: { nodes: Node[] }) {
 	return (
 		<header className="py-1 px-4 shadow-sm flex justify-between">
 			<h1 className="text-4xl font-bold text-center">Chatbot Flow</h1>
-			<button
-				className="py-1 px-4 border border-blue-400 rounded-md text-sm font-semibold hover:border-blue-600 active:bg-slate-100"
-				onClick={isValidSave}
-			>
-				Save Changes
-			</button>
+			<Button onClick={isValidSave}>Save Changes</Button>
 		</header>
 	)
 }

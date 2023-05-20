@@ -20,12 +20,12 @@ export const AddNodePanel = () => {
 
 			<div className="p-2 mt-3 w-fit min-w-[240px]">
 				<div
-					className="border border-blue-500 py-2 px-3 rounded-md cursor-pointer flex flex-col items-center gap-2"
+					className="border border-primary bg-primary/5 text-primary-foreground hover:border-primary/90 hover:bg-primary/10 py-2 px-3 rounded-md cursor-pointer flex flex-col items-center gap-2 transition-colors"
 					onDragStart={(event) => onDragStart(event, 'textNode')}
 					draggable
 				>
-					<IconMessages size="32" color="rgb(37,99,235)" />
-					<span className="font-semibold text-blue-600">Message</span>
+					<IconMessages size="32" color="hsl(222.2,47.4%,11.2%)" />
+					<span className="font-semibold text-primary">Message</span>
 				</div>
 			</div>
 		</aside>
