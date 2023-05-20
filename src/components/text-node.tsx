@@ -1,8 +1,9 @@
+import { memo } from 'react'
 import { Handle, NodeProps, Position } from 'reactflow'
 import { twMerge } from 'tailwind-merge'
 import { NodeData } from '../../src/config/store'
 
-export const TextNode = ({ data }: NodeProps<NodeData>) => {
+export const TextNode = memo(({ data }: NodeProps<NodeData>) => {
 	return (
 		<div
 			className={twMerge(
@@ -14,10 +15,10 @@ export const TextNode = ({ data }: NodeProps<NodeData>) => {
 				Send Message
 			</span>
 			<div className="py-2 px-3 min-h-[32px]">
-				<p className="text-xs">{data.label}</p>
+				<p className="text-xs whitespace-pre-wrap">{data.label}</p>
 			</div>
 			<Handle type="target" position={Position.Left} />
 			<Handle type="source" position={Position.Right} />
 		</div>
 	)
-}
+})

@@ -12,7 +12,6 @@ import {
 	applyNodeChanges,
 } from 'reactflow'
 import { create } from 'zustand'
-
 import { nodesConfig } from './site'
 
 export type NodeData = {
