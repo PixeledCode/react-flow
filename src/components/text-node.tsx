@@ -18,7 +18,7 @@ export const TextNode = memo(
 				<div className="py-2 px-3 min-h-[32px]">
 					<p className="text-xs whitespace-pre-wrap">{data.label}</p>
 				</div>
-				<Handle type="target" position={Position.Left} />
+				{!data.isInitial && <Handle type="target" position={Position.Left} />}
 				<Handle type="source" position={Position.Right} />
 			</div>
 		)

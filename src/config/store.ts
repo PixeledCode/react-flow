@@ -16,7 +16,7 @@ import { nodesConfig } from './site'
 
 export type NodeData = {
 	label: string
-	isSelected: boolean
+	isInitial?: boolean
 }
 
 export type NodeTypes = 'textNode'

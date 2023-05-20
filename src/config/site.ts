@@ -9,6 +9,7 @@ export const nodesConfig = {
 			type: 'textNode',
 			data: {
 				label: 'test message 1',
+				isInitial: true,
 			},
 			position: { x: 300, y: 400 },
 			sourcePosition: Position.Right,
