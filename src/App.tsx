@@ -1,70 +1,41 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import ReactFlow, {
 	Background,
 	BackgroundVariant,
-	Connection,
 	Controls,
-	Edge,
 	Node,
-	addEdge,
-	useEdgesState,
-	useNodesState,
 } from 'reactflow'
-
 import 'reactflow/dist/style.css'
-import { Node as CustomNode, Panel } from './components'
+import { shallow } from 'zustand/shallow'
+import { Panel } from './components'
 import { nodesConfig } from './config/site'
+import useStore from './config/store'
 
-const nodeTypes = {
-	textNode: CustomNode,
-}
+const selector = (state: {
+	nodes: any
+	edges: any
+	onNodesChange: any
+	onEdgesChange: any
+	onConnect: any
+	setSelectedNode: any
+}) => ({
+	nodes: state.nodes,
+	edges: state.edges,
+	onNodesChange: state.onNodesChange,
+	onEdgesChange: state.onEdgesChange,
+	onConnect: state.onConnect,
+	setSelectedNode: state.setSelectedNode,
+})
 
 export default function App() {
-	const [nodes, setNodes, onNodesChange] = useNodesState(
-		nodesConfig.initialNodes
-	)
-	const [edges, setEdges, onEdgesChange] = useEdgesState(
-		nodesConfig.initialEdges
-	)
-	const [selectedNode, setSelectedNode] = React.useState<Node>()
-	const [nodeVal, setNodeVal] = React.useState<string | null>(null)
-
-	const onConnect = useCallback(
-		(params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
-		[setEdges]
-	)
-
-	const onChange = useCallback(
-		(params: string) => {
-			setNodeVal(params)
-		},
-		[setNodeVal]
-	)
-
-	React.useEffect(() => {
-		if (selectedNode && nodeVal) {
-			setNodes((nds) =>
-				nds.map((node) => {
-					if (node.id === selectedNode.id) {
-						// it's important that you create a new object here
-						// in order to notify react flow about the change
-						node.data = {
-							...node.data,
-							label: nodeVal,
-						}
-					}
-
-					return node
-				})
-			)
-		}
-	}, [setNodes, nodeVal, selectedNode])
-
-	React.useEffect(() => {
-		if (selectedNode) {
-			setNodeVal(selectedNode.data.label)
-		}
-	}, [selectedNode])
+	const {
+		nodes,
+		edges,
+		onNodesChange,
+		onEdgesChange,
+		onConnect,
+		setSelectedNode,
+	} = useStore(selector, shallow)
 
 	return (
 		<main className="flex">
@@ -74,16 +45,13 @@ export default function App() {
 					edges={edges}
 					onNodesChange={onNodesChange}
 					onEdgesChange={onEdgesChange}
-					onNodeClick={(event: React.MouseEvent, selectedNode: Node) => {
-						const selected = nodes.filter(
-							(node) => node.id === selectedNode.id
-						)[0]
-						setSelectedNode(selected)
+					onNodeClick={(event: React.MouseEvent, node: Node) => {
+						setSelectedNode(node)
 					}}
 					onConnect={onConnect}
 					fitView
 					snapToGrid={true}
-					nodeTypes={nodeTypes}
+					nodeTypes={nodesConfig.nodeTypes}
 				>
 					<Controls />
 
@@ -91,7 +59,7 @@ export default function App() {
 				</ReactFlow>
 			</div>
 			<div className="basis-[400px]">
-				<Panel node={selectedNode} onChange={onChange} />
+				<Panel />
 			</div>
 		</main>
 	)

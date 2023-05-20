@@ -1,17 +1,17 @@
 import { Node } from 'reactflow'
+import { shallow } from 'zustand/shallow'
+import useStore from '../config/store'
 import { TextPanel } from './text-panel'
 
-export const Panel = ({
-	node,
-	onChange,
-}: {
-	node?: Node
-	onChange?: (event: string) => void
-	type?: 'text'
-}) => {
-	if (node?.type === 'textNode') {
-		const value = node?.data?.label
-		return <TextPanel value={value} onChange={onChange} />
+const selector = (state: { selectedNode: Node | null }) => ({
+	selectedNode: state.selectedNode,
+})
+
+export const Panel = () => {
+	const { selectedNode } = useStore(selector, shallow)
+
+	if (selectedNode?.type === 'textNode') {
+		return <TextPanel />
 	}
 
 	return <TextPanel />

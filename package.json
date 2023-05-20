@@ -12,7 +12,9 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "reactflow": "^11.7.2"
+    "reactflow": "^11.7.2",
+    "tailwind-merge": "^1.12.0",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

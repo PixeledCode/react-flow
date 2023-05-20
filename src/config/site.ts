@@ -1,4 +1,6 @@
 import { Position } from 'reactflow'
+import { Edge, Node } from 'reactflow'
+import { TextNode } from '../../src/components'
 
 export const nodesConfig = {
 	initialNodes: [
@@ -7,9 +9,7 @@ export const nodesConfig = {
 			type: 'textNode',
 			data: {
 				label: 'test message 1',
-				onChange: (e: any) => {
-					console.log(e)
-				},
+				isSelected: false,
 			},
 			position: { x: 0, y: 0 },
 			sourcePosition: Position.Right,
@@ -19,13 +19,14 @@ export const nodesConfig = {
 			type: 'textNode',
 			data: {
 				label: 'test message 2',
-				onChange: (e: any) => {
-					console.log(e)
-				},
+				isSelected: false,
 			},
 			position: { x: 300, y: 0 },
 			targetPosition: Position.Left,
 		},
-	],
-	initialEdges: [{ id: 'e1-1', source: '1', target: '2' }],
+	] as Node[],
+	initialEdges: [{ id: 'e1-1', source: '1', target: '2' }] as Edge[],
+	nodeTypes: {
+		textNode: TextNode,
+	},
 }

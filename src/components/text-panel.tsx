@@ -1,21 +1,20 @@
-import React from 'react'
+import { Node } from 'reactflow'
+import { shallow } from 'zustand/shallow'
+import useStore from '../../src/config/store'
 
-export const TextPanel = ({
-	value,
-	onChange,
-}: {
-	value?: string
-	onChange?: (event: string) => void
-}) => {
-	const [message, setMessage] = React.useState<string>()
+const selector = (state: {
+	selectedNode: Node | null
+	updateNodeLabel: (nodeId: string, nodeVal: string) => void
+}) => ({
+	selectedNode: state.selectedNode,
+	updateNodeLabel: state.updateNodeLabel,
+})
 
-	React.useEffect(() => {
-		setMessage(value || '')
-	}, [value])
+export const TextPanel = () => {
+	const { selectedNode, updateNodeLabel } = useStore(selector, shallow)
 
 	function handleChange(value: string) {
-		onChange && onChange(value)
-		setMessage(value)
+		selectedNode && updateNodeLabel(selectedNode.id, value)
 	}
 
 	return (
@@ -35,9 +34,10 @@ export const TextPanel = ({
 				<div className="mt-1">
 					<textarea
 						rows={4}
+						key={selectedNode?.id}
+						defaultValue={selectedNode?.data.label}
 						name="message"
 						id="message"
-						value={message}
 						onChange={(e) => handleChange(e.target.value)}
 						className="border block w-full border-gray-300 rounded-md sm:text-sm p-2"
 					/>
