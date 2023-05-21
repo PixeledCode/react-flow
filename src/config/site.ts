@@ -8,7 +8,7 @@ export const nodesConfig = {
 			id: '1',
 			type: 'textNode',
 			data: {
-				label: 'test message 1',
+				label: 'hey check this video out\nhttps://youtu.be/dQw4w9WgXcQ',
 				isInitial: true,
 				targetSelected: false,
 			},
@@ -19,7 +19,7 @@ export const nodesConfig = {
 			id: '2',
 			type: 'textNode',
 			data: {
-				label: 'test message 2',
+				label: 'wow, that was a great video\n😳',
 				targetSelected: true,
 			},
 			position: { x: 600, y: 300 },

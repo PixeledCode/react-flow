@@ -81,6 +81,8 @@ export default function App() {
 						}}
 						onDragOver={onDragOver}
 						onDrop={onDrop}
+						fitView
+						fitViewOptions={{ maxZoom: 1 }}
 						onInit={setReactFlowInstance}
 						snapToGrid={true}
 						nodeTypes={nodesConfig.nodeTypes}
