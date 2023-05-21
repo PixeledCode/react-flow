@@ -48,12 +48,12 @@ You can read about the terminology [here](https://reactflow.dev/docs/concepts/te
 
 Some of the key features of the application include:
 
-- Create Multiple Nodes.
-- Create Edges between Nodes.
-- Create Nodes from a list of available Nodes.
-- Change the settings of the a Node.
-- While saving, throw an error if the graph is not valid.
-- PWA, so the application works offline.
+- Creating multiple Nodes.
+- Creating Edges between Nodes.
+- Creating Nodes from a list of available options.
+- Change the settings of a Node.
+- Validating Graph Integrity.
+- Offline Functionality with PWA.
 
 ## Styling
 
