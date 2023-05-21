@@ -36,6 +36,8 @@ The application allows users to create flow diagrams. The user can create multip
 
 ## Terminology
 
+You can read about the terminology [here](https://reactflow.dev/docs/concepts/terms-and-definitions/) but here is a quick summary:
+
 - **Node**: A node is a single element in the flow diagram. It can be connected to other nodes with edges.
 - **Edge**: An edge is a connection between two nodes. It can be used to connect two nodes together.
 - **Graph**: A graph is a collection of nodes and edges. A graph can have multiple nodes and edges.
