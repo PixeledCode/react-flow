@@ -29,5 +29,5 @@ export const nodesConfig = {
 	initialEdges: [{ id: 'e1-1', source: '1', target: '2' }] as Edge[],
 	nodeTypes: {
 		textNode: TextNode,
-	},
+	} as any,
 }
