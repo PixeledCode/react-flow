@@ -92,7 +92,7 @@ export default function App() {
 						<Background variant={BackgroundVariant.Dots} gap={12} size={1} />
 					</ReactFlow>
 				</div>
-				<div className="basis-[350px]">
+				<div className="hidden basis-[300px] md:block lg:basis-[350px]">
 					<Panel />
 				</div>
 			</main>
