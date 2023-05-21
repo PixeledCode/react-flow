@@ -1,7 +1,6 @@
-import { Node } from 'reactflow'
-import { useToast } from './ui/toast/use-toast'
-import { Button } from './ui/button/button'
 import { Workflow } from 'lucide-react'
+import { Node } from 'reactflow'
+import { Button, useToast } from './ui'
 
 export function Header({ nodes }: { nodes: Node[] }) {
 	const { toast } = useToast()

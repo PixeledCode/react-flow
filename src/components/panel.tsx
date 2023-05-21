@@ -1,9 +1,9 @@
 import { Node } from 'reactflow'
 import { shallow } from 'zustand/shallow'
-import useStore from '../config/store'
-import { TextPanel, AddNodePanel } from './panels'
+import useStore from '@/config/store'
+import { AddNodePanel, TextPanel } from './panels'
 
-const selector = (state: { selectedNode: Node | null; nodes: Node[] }) => ({
+const selector = (state: { selectedNode: Node | null }) => ({
 	selectedNode: state.selectedNode,
 })
 
@@ -19,6 +19,7 @@ export const Panel = () => {
 }
 
 const getPanel = (type: string) => {
+	// when list of panels grows, use a switch statement or a map
 	if (type === 'textNode') {
 		return TextPanel
 	}

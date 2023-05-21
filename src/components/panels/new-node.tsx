@@ -3,6 +3,7 @@ import { MessagesSquare } from 'lucide-react'
 import React from 'react'
 
 export const AddNodePanel = () => {
+	// using HTML Drag and Drop API
 	const onDragStart = (
 		event: React.DragEvent<HTMLDivElement>,
 		nodeType: NodeTypes

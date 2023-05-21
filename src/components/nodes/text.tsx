@@ -1,13 +1,13 @@
 import { NodeData } from '@/config/store'
+import { cn } from '@/lib/utils'
 import { memo } from 'react'
 import { Handle, Position } from 'reactflow'
-import { twMerge } from 'tailwind-merge'
 
 export const TextNode = memo(
 	({ selected, data }: { selected: boolean; data: NodeData }) => {
 		return (
 			<div
-				className={twMerge(
+				className={cn(
 					'bg-white border-[1px] shadow-2xl border-transparent rounded-md min-w-[200px] text-start',
 					selected && 'border-blue-500'
 				)}
@@ -18,6 +18,7 @@ export const TextNode = memo(
 				<div className="py-2 px-3 min-h-[32px]">
 					<p className="text-xs whitespace-pre-wrap">{data.label}</p>
 				</div>
+				{/* remove target edge from the first node */}
 				{!data.isInitial && <Handle type="target" position={Position.Left} />}
 				<Handle type="source" position={Position.Right} />
 			</div>

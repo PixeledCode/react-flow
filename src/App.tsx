@@ -3,6 +3,7 @@ import ReactFlow, {
 	Background,
 	BackgroundVariant,
 	Controls,
+	Edge,
 	Node,
 	ReactFlowProvider,
 } from 'reactflow'
@@ -14,12 +15,12 @@ import useStore from './config/store'
 import { handleDragOver, handleOnDrop } from './lib/utils'
 
 const selector = (state: {
-	nodes: any
-	edges: any
+	nodes: Node[]
+	edges: Edge[]
 	onNodesChange: any
 	onEdgesChange: any
 	onConnect: any
-	setSelectedNode: any
+	setSelectedNode: (node: Node | null) => void
 	setNodes: (node: Node) => void
 }) => ({
 	nodes: state.nodes,
