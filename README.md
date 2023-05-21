@@ -18,6 +18,7 @@ The application allows users to create flow diagrams. The user can create multip
 ## Directory Structure
 
 ```
+├── public
 ├── src
 │   ├── assets
 │   ├── components
@@ -52,6 +53,7 @@ Some of the key features of the application include:
 - Create Nodes from a list of available Nodes.
 - Change the settings of the a Node.
 - While saving, throw an error if the graph is not valid.
+- PWA, so the application works offline.
 
 ## Styling
 
