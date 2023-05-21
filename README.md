@@ -15,15 +15,45 @@ To get started with this application, you will need to follow these steps:
 
 The application allows users to create flow diagrams. The user can create multiple nodes and connect them with edges. Each node can be customized with a label.
 
+## Directory Structure
+
+```
+├── src
+│   ├── assets
+│   ├── components
+│   │   ├── nodes
+│   │   ├── panels
+│   │   └── ui
+│   │   └── index.ts
+│   ├── config
+│   │   ├── site.ts
+│   │   └── store.ts
+│   ├── lib
+│   │   └── utils.ts
+│   ├── styles
+│   ├── App.tsx
+```
+
+## Terminology
+
+- **Node**: A node is a single element in the flow diagram. It can be connected to other nodes with edges.
+- **Edge**: An edge is a connection between two nodes. It can be used to connect two nodes together.
+- **Graph**: A graph is a collection of nodes and edges. A graph can have multiple nodes and edges.
+- **Panel**: A panel is a component that is used to change the settings of a node or add a new node to the graph.
+
 ## Features
 
 Some of the key features of the application include:
 
-- Nodes: Create Multiple Nodes.
-- Edges: Create Edges between Nodes.
-- Nodes Panel: Create Nodes from a list of available Nodes.
-- Settings Panel: Change the settings of the a Node.
-- Save Button: Throws an error if the graph is not valid.
+- Create Multiple Nodes.
+- Create Edges between Nodes.
+- Create Nodes from a list of available Nodes.
+- Change the settings of the a Node.
+- While saving, throw an error if the graph is not valid.
+
+## Styling
+
+The application uses [Tailwind CSS](https://tailwindcss.com/) for styling.
 
 ## Add a new Node
 
