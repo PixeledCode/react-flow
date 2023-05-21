@@ -22,12 +22,14 @@ export function Header({ nodes }: { nodes: Node[] }) {
 	}
 
 	return (
-		<header className="py-1 px-4 shadow-sm flex justify-between gap-3 flex-wrap">
+		<header className="py-2 px-4 shadow-sm flex justify-between gap-3 flex-wrap">
 			<div className="flex gap-2 items-center">
 				<Workflow size={32} />
 				<h1 className="text-3xl font-bold text-center ">Chatbot Flow</h1>
 			</div>
-			<Button onClick={handleSaveClick}>Save Changes</Button>
+			<Button size="sm" onClick={handleSaveClick}>
+				Save Changes
+			</Button>
 		</header>
 	)
 }

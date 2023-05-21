@@ -1,17 +1,23 @@
 import useStore from '@/config/store'
+import { ArrowLeft } from 'lucide-react'
 import { Node } from 'reactflow'
 import { shallow } from 'zustand/shallow'
 
 const selector = (state: {
 	selectedNode: Node | null
 	updateNodeLabel: (nodeId: string, nodeVal: string) => void
+	setSelectedNode: (node: Node | null) => void
 }) => ({
 	selectedNode: state.selectedNode,
 	updateNodeLabel: state.updateNodeLabel,
+	setSelectedNode: state.setSelectedNode,
 })
 
 export const TextPanel = () => {
-	const { selectedNode, updateNodeLabel } = useStore(selector, shallow)
+	const { selectedNode, updateNodeLabel, setSelectedNode } = useStore(
+		selector,
+		shallow
+	)
 
 	function handleChange(value: string) {
 		selectedNode && updateNodeLabel(selectedNode.id, value)
@@ -19,8 +25,15 @@ export const TextPanel = () => {
 
 	return (
 		<>
-			<div className="p-2 font-semibold">
-				<h2>Message</h2>
+			<div className="p-2 font-semibold flex">
+				<button
+					onClick={() => {
+						setSelectedNode(null)
+					}}
+				>
+					<ArrowLeft />
+				</button>
+				<h2 className="flex-grow text-center">Message</h2>
 			</div>
 			<hr />
 

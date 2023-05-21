@@ -30,7 +30,7 @@ type RFState = {
 	onEdgesChange: OnEdgesChange
 	onConnect: OnConnect
 	updateNodeLabel: (nodeId: string, nodeVal: string) => void
-	setSelectedNode: (node: Node) => void
+	setSelectedNode: (node: Node | null) => void
 }
 
 // this is our useStore hook that we can use in our components to get parts of the store and call actions
@@ -38,10 +38,24 @@ const useStore = create<RFState>((set, get) => ({
 	nodes: nodesConfig.initialNodes,
 	edges: nodesConfig.initialEdges,
 	selectedNode: null,
-	setSelectedNode: (node: Node) => {
+	setSelectedNode: (node: Node | null) => {
 		set({
 			selectedNode: node,
 		})
+
+		// if the node is null, then we want to deselect the currently selected node
+		if (node === null) {
+			const selectedNode = get().nodes.find((n) => n.selected === true)
+			if (selectedNode) {
+				get().onNodesChange([
+					{
+						type: 'select',
+						id: selectedNode.id,
+						selected: false,
+					},
+				])
+			}
+		}
 	},
 	setNodes: (node: Node) => {
 		set({
@@ -62,6 +76,7 @@ const useStore = create<RFState>((set, get) => ({
 		set({
 			edges: addEdge(connection, get().edges),
 			// set the targetSelected to true for the node that is the target of the connection
+			// used for validation
 			nodes: get().nodes.map((node) => {
 				if (node.id === connection.target) {
 					node.data = {
