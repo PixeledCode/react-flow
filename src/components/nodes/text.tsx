@@ -42,6 +42,12 @@ export const TextNode = memo((node: Node) => {
 				type="source"
 				position={Position.Right}
 				isConnectableStart={connectable}
+				// isValidConnection={(connection) => {
+				// 	console.log(connection)
+
+				// 	if (connection.target === id) return false
+				// 	return true
+				// }}
 			/>
 		</div>
 	)

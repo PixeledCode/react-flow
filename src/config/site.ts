@@ -10,7 +10,6 @@ export const nodesConfig = {
 			data: {
 				label: 'hey check this video out\nhttps://youtu.be/dQw4w9WgXcQ',
 				isInitial: true,
-				targetSelected: false,
 			},
 			position: { x: 300, y: 400 },
 			sourcePosition: Position.Right,
@@ -20,7 +19,6 @@ export const nodesConfig = {
 			type: 'textNode',
 			data: {
 				label: 'wow, that was a great video\n😳',
-				targetSelected: true,
 			},
 			position: { x: 600, y: 300 },
 			targetPosition: Position.Left,

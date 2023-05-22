@@ -1,13 +1,17 @@
 import { Workflow } from 'lucide-react'
-import { Node } from 'reactflow'
+import { useStore } from 'reactflow'
 import { Button, useToast } from './ui'
 
-export function Header({ nodes }: { nodes: Node[] }) {
+export function Header() {
 	const { toast } = useToast()
+	const unconnectedNodes = useStore((s) =>
+		s
+			.getNodes()
+			.filter((node) => !s.edges.some((edge) => edge.target === node.id))
+	)
 
 	function handleSaveClick() {
-		const notConnectedNodes = nodes.filter((node) => !node.data.targetSelected)
-		const isValid = notConnectedNodes.length < 2
+		const isValid = unconnectedNodes.length < 2
 		if (isValid) {
 			toast({
 				description: 'Saved successfully.',
