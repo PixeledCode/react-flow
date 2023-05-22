@@ -9,7 +9,7 @@ const selector = (state: { edges: Edge[] }) => ({
 })
 
 export const TextNode = memo((node: Node) => {
-	const [connectable, setConnectable] = React.useState(true)
+	const [sourceConnectable, setSourceConnectable] = React.useState(true)
 	const { data, selected, id } = node
 	const { edges } = useStore(selector, shallow)
 	const alledges = getConnectedEdges([node], edges)
@@ -17,7 +17,7 @@ export const TextNode = memo((node: Node) => {
 	React.useEffect(() => {
 		alledges.forEach((edge) => {
 			if (edge.source === id) {
-				setConnectable(false)
+				setSourceConnectable(false)
 				return
 			}
 		})
@@ -41,13 +41,7 @@ export const TextNode = memo((node: Node) => {
 			<Handle
 				type="source"
 				position={Position.Right}
-				isConnectableStart={connectable}
-				// isValidConnection={(connection) => {
-				// 	console.log(connection)
-
-				// 	if (connection.target === id) return false
-				// 	return true
-				// }}
+				isConnectable={sourceConnectable}
 			/>
 		</div>
 	)

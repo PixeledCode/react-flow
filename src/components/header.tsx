@@ -4,14 +4,14 @@ import { Button, useToast } from './ui'
 
 export function Header() {
 	const { toast } = useToast()
-	const unconnectedNodes = useStore((s) =>
-		s
+	const nodesWithoutTarget = useStore((store) =>
+		store
 			.getNodes()
-			.filter((node) => !s.edges.some((edge) => edge.target === node.id))
+			.filter((node) => !store.edges.some((edge) => edge.target === node.id))
 	)
 
 	function handleSaveClick() {
-		const isValid = unconnectedNodes.length < 2
+		const isValid = nodesWithoutTarget.length < 2
 		if (isValid) {
 			toast({
 				description: 'Saved successfully.',
