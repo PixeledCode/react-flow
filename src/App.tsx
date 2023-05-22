@@ -62,7 +62,7 @@ export default function App() {
 
 	return (
 		<ReactFlowProvider>
-			<Header nodes={nodes} />
+			<Header />
 			<main className="flex">
 				<div
 					className="h-[calc(100vh_-_48px)] flex-grow"
