@@ -1,6 +1,6 @@
 # React Flow
 
-The purpose of the application is to provide the ability to create flow diagrams for a Chatbot application.
+An implementation of a node based editor using react flow
 
 ## Installation
 
